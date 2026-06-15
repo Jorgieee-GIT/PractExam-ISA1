@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Legislative Document Archiving Module</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="logo-wrap">
+                <img src="assets/LU_seal.png" alt="SFCLU Municipal Seal" class="logo">
+            </div>
+            <div class="header-text">
+                <p class="header-sub">Sangguniang Panlalawigan ng La Union</p>
+                <h1 class="header-title">Legislative Document Archiving Module</h1>
+                <p class="header-sub">Legislative Tracking and Monitoring Unit</p>
+            </div>
+            <div class="logo-wrap">
+                <img src="assets/LAW_logo.png" alt="Legislative Logo" class="logo">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by document number or title…"
+                aria-label="Search documents"
+                >
+                <select id="filterType" aria-label="Filter by document type">
+                <option value="">All Types</option>
+                <option value="Ordinance">Ordinance</option>
+                <option value="Resolution">Resolution</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" id="addBtn">
+                ＋ Add Document
+            </button>
+        </div>
+        <div class="stats-bar">
+            <span id="statTotal" class="stat-chip chip-all">Total: 0</span>
+            <span id="statOrd" class="stat-chip chip-ord">Ordinances: 0</span>
+            <span id="statRes" class="stat-chip chip-res">Resolutions: 0</span>
+        </div>
+        <div class="table-wrap">
+            <table id="docTable" aria-label="Legislative documents">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Document No.</th>
+                        <th>Title</th>
+                        <th>Date Passed</th>
+                        <th>Author / Sponsor</th>
+                        <th class="col-actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-icon">📄</div>
+                <p>No records found.</p>
+                <small>Try adjusting your search or filter, or add a new document.</small>
+            </div>
+        </div>
+    </main>
+
+    <div class="overlay" id="editOverlay" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalHeading">Add Document</h2>
+                <button class="modal-close" id="editCloseBtn" aria-label="Close dialog">&#x2715;</button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-error" id="formError" role="alert" hidden></div>
+                <input type="hidden" id="recId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fType">Document Type <span class="req">*</span></label>
+                        <select id="fType">
+                            <option value="">Select type…</option>
+                            <option value="Ordinance">Ordinance</option>
+                            <option value="Resolution">Resolution</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fNum">Document Number <span class="req">*</span></label>
+                        <div class="input-with-badge">
+                            <input
+                                type="text"
+                                id="fNum"
+                                placeholder="0001-2026"
+                                maxlength="9"
+                                aria-describedby="numHint"
+                            >
+                            <span class="input-badge" id="autoLabel">Auto-filled</span>
+                        </div>
+                        <small id="numHint" class="form-hint">Format: 0001-2026</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fTitle">Title / Subject <span class="req">*</span></label>
+                    <input type="text" id="fTitle" placeholder="Enter document title or subject">
+                </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fDate">Date Passed <span class="req">*</span></label>
+                    <input type="date" id="fDate">
+                </div>
+                <div class="form-group">
+                    <label for="fAuthor">Author / Sponsor <span class="req">*</span></label>
+                    <input type="text" id="fAuthor" placeholder="Honorable …">
+                </div>
+            </div>
+            </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="editCancelBtn">Cancel</button>
+                    <button class="btn btn-primary" id="saveBtn">Save Record</button>
+                </div>
+            </div>
+        </div>
+    <div class="overlay" id="viewOverlay" role="dialog" aria-modal="true" aria-labelledby="viewHeading">
+        <div class="modal modal-view">
+
+        <div class="modal-header">
+            <h2 id="viewHeading">Document Details</h2>
+            <button class="modal-close" id="viewCloseBtn" aria-label="Close dialog">&#x2715;</button>
+        </div>
+        <div class="modal-body" id="viewBody"></div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" id="viewCancelBtn">Close</button>
+        </div>
+        </div>
+    </div>
+    <div class="overlay" id="deleteOverlay" role="dialog" aria-modal="true" aria-labelledby="deleteHeading">
+        <div class="modal modal-sm">
+        <div class="modal-header modal-header-danger">
+            <h2 id="deleteHeading">Confirm Deletion</h2>
+            <button class="modal-close" id="deleteCloseBtn" aria-label="Close dialog">&#x2715;</button>
+        </div>
+        <div class="modal-body">
+            <p id="deleteMsg">Are you sure you want to permanently delete this record? This action cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" id="deleteCancelBtn">Cancel</button>
+            <button class="btn btn-danger" id="deleteConfirmBtn">Yes, Delete</button>
+        </div>
+        </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+    </body>
+</html>
