@@ -2,7 +2,9 @@
 
 ## Applicant Information
 **Name:** Jorge Jose Abenojar
-**Position Applied For:** Information Systems Analyst 
+
+**Position Applied For:** Information Systems Analyst
+
 **Submission Date:** June 15, 2026
 
 ---
@@ -18,11 +20,52 @@
 ---
 
 ## How to Run the Application
- 
-1. **Extract** the zip folder to any location on your computer.
-2. **Open** the `index.html` file in any modern web browser (Chrome, Firefox, Edge, Safari).
-3. The application will load immediately — no server, no installation, no internet connection required.
 
+### Option 1: Access the Live Application
+
+1. Open any modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari).
+
+2. Navigate to the following URL:
+
+```text
+basta link ko here
+```
+
+3. The application will load automatically.
+
+4. Click **Add Document** to create a new legislative record.
+
+5. All records are automatically saved using the browser's localStorage.
+
+---
+
+### Option 2: Run from the GitHub Repository
+
+1. Open the GitHub repository:
+
+```text
+https://github.com/Jorgieee-GIT/PractExam-ISA1
+```
+
+2. Click the **Code** button.
+
+3. Select **Download ZIP**.
+
+4. Extract the downloaded ZIP file to any location on your computer.
+
+5. Open the extracted project folder.
+
+6. Locate the file:
+
+```text
+index.html
+```
+
+7. Double-click `index.html` or open it using any modern web browser.
+
+8. The application will launch immediately.
+
+9. No installation, database server, internet connection, or additional software is required.
 
 ---
 
