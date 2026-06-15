@@ -25,7 +25,6 @@
 2. **Open** the `index.html` file in any modern web browser (Chrome, Firefox, Edge, Safari).
 3. The application will load immediately — no server, no installation, no internet connection required.
 
-> **Note:** Data is stored in the browser's `localStorage`. Records will persist across page refreshes and browser restarts **on the same browser and computer**.
 
 ---
 
