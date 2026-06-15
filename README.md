@@ -28,7 +28,7 @@
 2. Navigate to the following URL:
 
 ```text
-basta link ko here
+https://moonvale-smp.s3.ap-southeast-1.amazonaws.com/Legislative+Tracking+and+Monitoring+Unit_Abenojar%2C+Jorge+Jose/index.html
 ```
 
 3. The application will load automatically.
